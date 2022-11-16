@@ -11,9 +11,9 @@ if [[ ! -e student-submission/ListExamples.java ]]
 then
     echo "ListExamples.java does not exist in the directory"
     exit
+fi
 
 cp student-submission/ListExamples.java ListExamples.java
-fi
 
 javac -cp $CP TestListExamples.java 2> err.txt
 
@@ -24,7 +24,7 @@ then
     exit
 fi
 
-javac -cp $CP ListExamples.java > err.txt
+javac -cp $CP ListExamples.java TestListExamples.java > err.txt
 
 if [[ ! $? -eq 0 ]]
 then
@@ -32,5 +32,7 @@ then
     cat err.txt
     exit
 fi
+
+java TestListExamples > output.txt
 
 exit 0
