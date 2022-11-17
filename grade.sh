@@ -4,7 +4,8 @@ set -e
 rm -rf student-submission
 git clone $1 student-submission
 
-CP=".:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar"
+CP=".;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar"
+CP2=".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar"
 passing=0
 
 if [[ ! -e student-submission/ListExamples.java ]]
@@ -13,7 +14,7 @@ then
     exit
 fi
 
-cp student-submission/ListExamples.java ListExamples.java
+cp ListExamples.java student-submission/ListExamples.java
 
 javac -cp $CP TestListExamples.java 2> err.txt
 
@@ -24,7 +25,7 @@ then
     exit
 fi
 
-javac -cp $CP ListExamples.java TestListExamples.java > err.txt
+javac -cp $CP ListExamples.java 2> err.txt
 
 if [[ ! $? -eq 0 ]]
 then
@@ -33,6 +34,7 @@ then
     exit
 fi
 
-java TestListExamples > output.txt
+java -cp $CP2 org.junit.runner.JUnitCore TestListExamples > output.txt
+cat output.txt
 
 exit 0
