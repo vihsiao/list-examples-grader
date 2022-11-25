@@ -25,18 +25,13 @@ then
     exit 1
 fi
 
-#cp TestListExamples.java student-submission
-
-#cd student-submission
-
-#if [[ -e ./ListExamples.java ]]
-#then 
-#echo "file found"
-#fi
-
 javac -cp $CP *.java
 java -cp $CP2 org.junit.runner.JUnitCore TestListExamples > output.txt
 
 cat output.txt
+
+
+#echo "Your total score is" $((${OUTPUT:25:1}-${OUTPUT:11:1}))" "out of ${OUTPUT:11:1}"
+#fi
 
 exit 0
