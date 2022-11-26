@@ -28,10 +28,13 @@ fi
 javac -cp $CP *.java
 java -cp $CP2 org.junit.runner.JUnitCore TestListExamples > output.txt
 
-cat output.txt
-
-
-#echo "Your total score is" $((${OUTPUT:25:1}-${OUTPUT:11:1}))" "out of ${OUTPUT:11:1}"
-#fi
+if [[ $? -eq 0 ]]
+then
+echo "You passed all tests"
+else
+failed="$(grep -w Failures output.txt)"
+echo $failed
+echo "Your total score is" "$((${failed:25:1}-${failed:11:1}))" "out of ${failed:11:1}"
+fi
 
 exit 0
