@@ -29,7 +29,7 @@ public class TestListExamples {
     public void testMerge() {
         List<String> list1 = new ArrayList<String>(Arrays.asList("a", "b", "e"));
         List<String> list2 = new ArrayList<String>(Arrays.asList("c", "d", "f"));
-        List<String> result = ListExamples.merge(list1, list2);
-        assertArrayEquals(new String[]{"a", "b", "c", "d", "e", "f"}, result.toArray());
+        list2 = ListExamples.merge(list1, list2);
+        assertArrayEquals(new String[]{"a", "b", "c", "d", "e", "f"}, list2.toArray());
     }
 }
