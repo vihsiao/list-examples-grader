@@ -32,6 +32,7 @@ if [[ $? -eq 0 ]]
 then
 echo "You passed all tests"
 else
+head -20 output.txt 
 failed="$(grep -w Failures output.txt)"
 echo $failed
 echo "Your total score is" "$((${failed:25:1}-${failed:11:1}))" "out of ${failed:11:1}"
