@@ -30,10 +30,11 @@ java -cp $CP2 org.junit.runner.JUnitCore TestListExamples > output.txt
 
 if [[ $? -eq 0 ]]
 then
-echo "You passed all tests"
+echo "$(grep -w OK output.txt)"
+echo "You passed all tests" 
 else
-head -20 output.txt 
 failed="$(grep -w Failures output.txt)"
+head -20 output.txt
 echo $failed
 echo "Your total score is" "$((${failed:25:1}-${failed:11:1}))" "out of ${failed:11:1}"
 fi
